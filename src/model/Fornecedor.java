@@ -13,7 +13,6 @@ public class Fornecedor {
     private int idFornecedor;
     private String fornecedor;
     private String estado;
-    private String created_at;
 
     public int getIdFornecedor() {
         return idFornecedor;
@@ -38,14 +37,7 @@ public class Fornecedor {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
     
+
     
 }

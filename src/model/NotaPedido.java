@@ -10,5 +10,9 @@ package model;
  * @author nicolau
  */
 public class NotaPedido {
-    
+    private int idNotaPedido;
+    private int id_fornecedor;
+    private int id_utilizador;
+    private String tipo_nota;
+    private String estado;
 }

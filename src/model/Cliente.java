@@ -11,11 +11,10 @@ import java.time.format.DateTimeFormatter;
  *
  * @author nicolau
  */
-public class Cliente extends Pessoa{
+public class Cliente{
     private int idCliente;
     private int id_pessoa;
     private String estado;
-    private String created_at;
 
     public int getIdCliente() {
         return idCliente;
@@ -40,14 +39,5 @@ public class Cliente extends Pessoa{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public DateTimeFormatter getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(DateTimeFormatter created_at) {
-        this.created_at = created_at;
-    }
-    
     
 }

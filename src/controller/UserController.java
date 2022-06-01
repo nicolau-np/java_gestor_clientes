@@ -13,29 +13,29 @@ import config.Conexao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.User;
+import model.Utilizador;
 
 public class UserController extends Controller {
 
     public Conexao conn;
 
-    public int strore(User user) {
+    public int strore(Utilizador user) {
 
         return 1;
     }
 
-    public String login(User user) {
+    public String login(Utilizador user) {
 
         return "hello";
     }
 
-    public List<User> list() {
-        List<User> utilizadores = new ArrayList<>();
+    public List<Utilizador> list() {
+        List<Utilizador> utilizadores = new ArrayList<>();
 
         return utilizadores;
     }
 
-    public String update(User user) {
+    public String update(Utilizador user) {
         return "hello";
     }
 

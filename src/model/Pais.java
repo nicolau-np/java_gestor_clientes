@@ -10,5 +10,60 @@ package model;
  * @author nicolau
  */
 public class Pais {
-    private S
+    private int idPais;
+    private String pais;
+    private String bandeira;
+    private String capital;
+    private String indicativo;
+    private String estado;
+
+    public int getIdPais() {
+        return idPais;
+    }
+
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getBandeira() {
+        return bandeira;
+    }
+
+    public void setBandeira(String bandeira) {
+        this.bandeira = bandeira;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
+    }
+
+    public String getIndicativo() {
+        return indicativo;
+    }
+
+    public void setIndicativo(String indicativo) {
+        this.indicativo = indicativo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
 }
