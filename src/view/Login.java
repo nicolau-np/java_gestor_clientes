@@ -6,6 +6,7 @@
 package view;
 
 import controller.UtilizadorController;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Utilizador;
 
@@ -15,6 +16,8 @@ import model.Utilizador;
  */
 public class Login extends javax.swing.JFrame {
 
+    public static String utilizador;
+    public static String acesso;
     /**
      * Creates new form Login
      */
@@ -43,6 +46,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar Sessão");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 40, 255));
 
@@ -94,15 +98,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(72, 72, 72))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jTutilizador, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addContainerGap()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jTutilizador, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                             .addComponent(jTpasse)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -150,15 +151,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBentrarActionPerformed
-        Utilizador utilizador = new Utilizador();
+        Utilizador utilizadormodel = new Utilizador();
         UtilizadorController utilizadorcontroller = new UtilizadorController();
         
-        utilizador.setUtilizador(jTutilizador.getText());
-        utilizador.setPalavra_passe(jTpasse.getText());
+        utilizadormodel.setUtilizador(jTutilizador.getText());
+        utilizadormodel.setPalavra_passe(jTpasse.getText());
         
-        String response = utilizadorcontroller.login(utilizador);
+        String response = utilizadorcontroller.login(utilizadormodel);
         if("yes".equals(response)){
-            JOptionPane.showMessageDialog(null, "Feito com sucesso");
+           utilizador = utilizadormodel.getUtilizador();
+           acesso = utilizadormodel.getAcesso();
+           this.dispose();
+           Home home = new Home();
+           home.setExtendedState(JFrame.MAXIMIZED_BOTH);
+           home.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorrectos");
         }
