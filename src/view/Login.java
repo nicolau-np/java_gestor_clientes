@@ -18,6 +18,7 @@ public class Login extends javax.swing.JFrame {
 
     public static String utilizador;
     public static String acesso;
+    public static String estado;
     /**
      * Creates new form Login
      */
@@ -161,9 +162,10 @@ public class Login extends javax.swing.JFrame {
         if("yes".equals(response)){
            utilizador = utilizadormodel.getUtilizador();
            acesso = utilizadormodel.getAcesso();
-           this.dispose();
+           estado = utilizadormodel.getEstado();
            Home home = new Home();
            home.setExtendedState(JFrame.MAXIMIZED_BOTH);
+           this.dispose();
            home.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Utilizador ou Palavra-Passe incorrectos");
