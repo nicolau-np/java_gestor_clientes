@@ -19,7 +19,7 @@ public class Conexao {
 
     }
 
-    public static Connection getConexaoMySQL() {
+    public static Connection conectar() {
         Connection connection = null;
         try {
             String driverName = "com.mysql.jdbc.Driver";
@@ -42,10 +42,10 @@ public class Conexao {
         }
     }
 
-    public static boolean FecharConexao() {
+    public static boolean desconectar() {
 
         try {
-            Conexao.getConexaoMySQL().close();
+            Conexao.conectar().close();
             return true;
         } catch (SQLException e) {
             return false;
@@ -53,8 +53,8 @@ public class Conexao {
     }
 
     public static Connection ReiniciarConexao() {
-        FecharConexao();
+        desconectar();
 
-        return Conexao.getConexaoMySQL();
+        return Conexao.conectar();
     }
 }

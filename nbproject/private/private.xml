@@ -4,9 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/view/Login.java</file>
-            <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/model/Fornecedor.java</file>
+            <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/controller/UtilizadorController.java</file>
+            <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/config/Conexao.java</file>
             <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/gestao_clientes/Gestao_clientes.java</file>
             <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/model/Cliente.java</file>
+            <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/controller/Controller.java</file>
             <file>file:/home/nicolau/NetBeansProjects/gestao_clientes/src/model/Pais.java</file>
         </group>
     </open-files>
