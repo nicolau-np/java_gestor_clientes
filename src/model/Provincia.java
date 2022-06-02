@@ -12,7 +12,7 @@ package model;
 public class Provincia {
     private int idProvincia;
     private int id_pais;
-    private String pais;
+    private String provincia;
     private String estado;
 
     public int getIdProvincia() {
@@ -31,12 +31,12 @@ public class Provincia {
         this.id_pais = id_pais;
     }
 
-    public String getPais() {
-        return pais;
+    public String getProvincia() {
+        return provincia;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
     }
 
     public String getEstado() {
@@ -46,6 +46,7 @@ public class Provincia {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     
     
 }
