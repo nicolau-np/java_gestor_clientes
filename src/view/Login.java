@@ -154,7 +154,7 @@ public class Login extends javax.swing.JFrame {
         UtilizadorController utilizadorcontroller = new UtilizadorController();
         
         utilizador.setUtilizador(jTutilizador.getText());
-        utilizador.setPalavra_passe(jTpasse.getSelectedText());
+        utilizador.setPalavra_passe(jTpasse.getText());
         
         String response = utilizadorcontroller.login(utilizador);
         if("yes".equals(response)){

@@ -26,7 +26,7 @@ public class UtilizadorController extends Controller {
 
     public String login(Utilizador user) {
 
-        this.sql = "select *from utilizador where utilizador=? and palavra_passe=?";
+        this.sql = "select *from utilizadores where utilizador=? and palavra_passe=?";
         try {
             this.cmd = conn.conectar().prepareStatement(this.sql);
             this.cmd.setString(1, user.getUtilizador());
