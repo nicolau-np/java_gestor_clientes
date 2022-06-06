@@ -19,9 +19,26 @@ public class UtilizadorController extends Controller {
 
     public Conexao conn;
 
-    public int strore(Utilizador user) {
+    public int store(Utilizador utilizador) {
+        int idUser = 0;
+        this.sql = "insert into utilizadores(id_pessoa, utilizador, palavra_passe, acesso, estado) "
+                + "values(?, ?, ?, ?, ?)";
+        try {
 
-        return 1;
+            this.cmd = conn.conectar().prepareStatement(sql);
+            this.cmd.setInt(1, utilizador.getId_pessoa());
+            this.cmd.setString(2, utilizador.getUtilizador());
+            this.cmd.setString(3, utilizador.getPalavra_passe());
+            this.cmd.setString(4, utilizador.getAcesso());
+            this.cmd.setString(5, utilizador.getEstado());
+            idUser = this.cmd.executeUpdate();
+
+        } catch (SQLException ex) {
+            this.response = ex.getMessage();
+        } finally {
+            conn.desconectar();
+        }
+        return idUser;
     }
 
     public String login(Utilizador user) {
@@ -44,7 +61,7 @@ public class UtilizadorController extends Controller {
             }
         } catch (SQLException ex) {
             this.response = ex.getMessage();
-        }finally{
+        } finally {
             conn.desconectar();
         }
         return this.response;

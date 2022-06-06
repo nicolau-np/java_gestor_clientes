@@ -15,10 +15,32 @@ import java.util.List;
  *
  * @author nicolau
  */
-public class ProvinciaController extends Controller{
+public class ProvinciaController extends Controller {
+
     public Conexao conn;
-    
-       public List<Provincia> list() {
+
+    public int getIdProvincia(String provincia) {
+        int idProvincia = 0;
+
+        this.sql = "select *from provincias where provincia=?";
+        try {
+            this.cmd = conn.conectar().prepareStatement(this.sql);
+            this.cmd.setString(1, provincia);
+            this.rs = this.cmd.executeQuery();
+
+            if (this.rs.next()) {
+                idProvincia = this.rs.getInt("idProvincia");
+            } 
+        } catch (SQLException ex) {
+            this.response = ex.getMessage();
+        }finally{
+            conn.desconectar();
+        }
+        
+     return idProvincia;   
+    }
+
+    public List<Provincia> list() {
         List<Provincia> provincias = new ArrayList<>();
         this.sql = "select *from provincias";
         try {
@@ -33,10 +55,10 @@ public class ProvinciaController extends Controller{
             }
         } catch (SQLException ex) {
             this.response = ex.getMessage();
-        }finally{
+        } finally {
             conn.desconectar();
         }
         return provincias;
     }
-       
+
 }

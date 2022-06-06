@@ -5,10 +5,18 @@
  */
 package view;
 
+import controller.MunicipioController;
+import controller.PessoaController;
 import controller.ProvinciaController;
+import controller.UtilizadorController;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import model.Municipio;
+import model.Pessoa;
 import model.Provincia;
+import model.Utilizador;
 
 /**
  *
@@ -16,6 +24,13 @@ import model.Provincia;
  */
 public class FormUtilizador extends javax.swing.JFrame {
 
+     ProvinciaController provinciacontroller = new ProvinciaController();
+     MunicipioController municipiocontroller = new MunicipioController();
+     Pessoa pessoa = new Pessoa();
+     PessoaController pessoacontroller = new PessoaController();
+     Utilizador utilizador = new Utilizador();
+     UtilizadorController utilizadorcontroller = new UtilizadorController();
+     
     /**
      * Creates new form FormUtilizador
      */
@@ -80,21 +95,31 @@ public class FormUtilizador extends javax.swing.JFrame {
 
         jLabel6.setText("Município:");
 
-        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Gênero", "Masculino", "Femenino" }));
 
         jTdata_nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
 
         jTtelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(+244) #########"))));
 
-        cbProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Província" }));
+        cbProvincia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbProvinciaItemStateChanged(evt);
+            }
+        });
+        cbProvincia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProvinciaActionPerformed(evt);
+            }
+        });
 
-        cbMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Município" }));
 
         jLabel7.setText("Nome de Utilizador:");
 
         jLabel8.setText("Acesso:");
 
-        cbAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Utilizador Normal", "Administrador" }));
+        cbAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Acesso", "Utilizador Normal", "Administrador" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,8 +141,8 @@ public class FormUtilizador extends javax.swing.JFrame {
                             .addComponent(jTnome)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTdata_nascimento)
-                                    .addComponent(cbProvincia, 0, 145, Short.MAX_VALUE))
+                                    .addComponent(jTdata_nascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                    .addComponent(cbProvincia, 0, 1, Short.MAX_VALUE))
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -180,6 +205,11 @@ public class FormUtilizador extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Operação"));
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Actualizar");
 
@@ -243,8 +273,8 @@ public class FormUtilizador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTsearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -274,7 +304,7 @@ public class FormUtilizador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
@@ -283,7 +313,49 @@ public class FormUtilizador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.getProvincias();
+
     }//GEN-LAST:event_formWindowOpened
+
+    private void cbProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProvinciaActionPerformed
+
+    }//GEN-LAST:event_cbProvinciaActionPerformed
+
+    private void cbProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProvinciaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Object provincia = evt.getItem();
+            if("Escolher Província".equals(provincia)){
+                
+            }else{
+                this.getMunicipios(provincia.toString());
+            }
+        }
+    }//GEN-LAST:event_cbProvinciaItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int id_municipio = municipiocontroller.getIdMunicipio(cbMunicipio.getSelectedItem().toString());
+        
+        pessoa.setId_municipio(id_municipio);
+        pessoa.setData_nascimento(jTdata_nascimento.getText());
+        pessoa.setGenero(cbGenero.getSelectedItem().toString());
+        pessoa.setTelefone(Integer.parseInt(jTtelefone.getText()));
+        pessoa.setNome(jTnome.getText());
+        pessoa.setFoto(null);
+        pessoa.setEstado("on");
+        
+        int idPessoa = pessoacontroller.store(pessoa);
+        
+        utilizador.setUtilizador(jTutilizador.getText());
+        utilizador.setAcesso(cbAcesso.getSelectedItem().toString());
+        utilizador.setEstado("on");
+        utilizador.setId_pessoa(idPessoa);
+        
+        int idUtilizador = utilizadorcontroller.store(utilizador);
+        
+        if(idUtilizador > 1){
+            JOptionPane.showMessageDialog(null, "Feito com sucesso");
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,10 +422,22 @@ public class FormUtilizador extends javax.swing.JFrame {
 
     private void getProvincias() {
         cbProvincia.removeAllItems();
-        cbProvincia.addItem("Escolher Provincia");
-        ProvinciaController provinciacontroller = new ProvinciaController();
+        cbProvincia.addItem("Escolher Província");
+        
         for (Provincia provincia : provinciacontroller.list()) {
             cbProvincia.addItem(provincia.getProvincia());
         }
     }
+    
+    private void getMunicipios(String provincia) {
+        cbMunicipio.removeAllItems();
+        cbMunicipio.addItem("Escolher Município");
+    
+        int idProvincia = provinciacontroller.getIdProvincia(provincia);
+        
+        for (Municipio municipio : municipiocontroller.list(idProvincia)) {
+            cbMunicipio.addItem(municipio.getMunicipio());
+        }
+    }
+    
 }

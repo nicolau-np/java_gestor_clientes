@@ -34,7 +34,25 @@ alter table provincias add constraint provincias_pais_id_pais
 foreign key(id_pais) references pais(idPais) on update cascade;
 
 insert into provincias(id_pais, provincia, estado) 
-values(1, "Namibe", "on");
+values(1, "Namibe", "on"),
+(1, "Luanda", "on"),
+(1, "Benguela", "on"),
+(1, "Huíla", "on"),
+(1, "Cunene", "on"),
+(1, "Moxico", "on"),
+(1, "Lunda Sul", "on"),
+(1, "Lunda Norte", "on"),
+(1, "Cuanza Sul", "on"),
+(1, "Cuanza Norte", "on"),
+(1, "Bié", "on"),
+(1, "Huambo", "on"),
+(1, "Cuando Cubango", "on"),
+(1, "Malanje", "on"),
+(1, "Cabinda", "on"),
+(1, "Zaire", "on"),
+(1, "Uíge", "on"),
+(1, "Bengo", "on")
+;
 -- end --
 
 -- Tabela de Municipio --
@@ -50,7 +68,42 @@ alter table municipios add constraint municipio_provincia_id_provincia
 foreign key(id_provincia) references provincias(idProvincia) on update cascade; 
 
 insert into municipios(id_provincia, municipio, estado) values 
-(1, "Namibe", "on");
+-- namibe --
+(1, "Moçamedes", "on"),
+(1, "Tômbwa", "on"),
+(1, "Virei", "on"),
+(1, "Lucira", "on"),
+(1, "Camucuio", "on"),
+(1, "Bibala", "on"),
+-- end --
+
+-- luanda --
+(2, "Luanda", "on"),
+(2, "Cacuaco", "on"),
+(2, "Cazenga", "on"),
+(2, "Ingombota", "on"),
+(2, "Kilamba Kiaxi", "on"),
+(2, "Maianga", "on"),
+(2, "Rangel", "on"),
+(2, "Samba", "on"),
+(2, "Sambizanga", "on"),
+(2, "Viana", "on"),
+-- end --
+
+-- benguela --
+(3, "Benguela", "on"),
+(3, "Baía Farta", "on"),
+(3, "Balombo", "on"),
+(3, "Bocoio", "on"),
+(3, "Caimbambo", "on"),
+(3, "Chongoroi", "on"),
+(3, "Cubal", "on"),
+(3, "Ganda", "on"),
+(3, "Lubito", "on")
+-- end --
+
+
+;
 -- end --
 
 -- Tabela de Pessoa --

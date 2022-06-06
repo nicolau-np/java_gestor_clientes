@@ -16,7 +16,7 @@ public class Pessoa {
     private int id_municipio;
     private String nome;
     private String genero;
-    private Date data_nascimento;
+    private String data_nascimento;
     private int telefone;
     private String foto;
     private String estado;
@@ -53,11 +53,11 @@ public class Pessoa {
         this.genero = genero;
     }
 
-    public Date getData_nascimento() {
+    public String getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(Date data_nascimento) {
+    public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
@@ -84,6 +84,7 @@ public class Pessoa {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
+  
     
 }
