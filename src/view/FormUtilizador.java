@@ -49,7 +49,7 @@ public class FormUtilizador extends javax.swing.JFrame {
         jTutilizadores = new javax.swing.JTable();
         jTsearch = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Formulário"));
