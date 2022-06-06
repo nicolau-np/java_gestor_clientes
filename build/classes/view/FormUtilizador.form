@@ -92,21 +92,21 @@
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jTnome" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTdata_nascimento" pref="145" max="32767" attributes="0"/>
-                                      <Component id="cbProvincia" pref="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cbProvincia" min="-2" pref="145" max="-2" attributes="0"/>
+                                      <Component id="jTdata_nascimento" min="-2" pref="161" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="cbMunicipio" min="-2" pref="175" max="-2" attributes="0"/>
-                                      <Component id="jTtelefone" min="-2" pref="175" max="-2" attributes="0"/>
-                                      <Component id="cbAcesso" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cbAcesso" max="32767" attributes="0"/>
+                                      <Component id="jTtelefone" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                               </Group>
@@ -223,20 +223,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jTdata_nascimento">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="yyyy-MM-dd" subtype="-1" type="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jTtelefone">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="(+244) #########" subtype="-1" type="0"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JComboBox" name="cbProvincia">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -290,6 +276,10 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTdata_nascimento">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTtelefone">
         </Component>
       </SubComponents>
     </Container>

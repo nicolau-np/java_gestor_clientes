@@ -56,14 +56,14 @@ public class FormUtilizador extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cbGenero = new javax.swing.JComboBox<>();
-        jTdata_nascimento = new javax.swing.JFormattedTextField();
-        jTtelefone = new javax.swing.JFormattedTextField();
         cbProvincia = new javax.swing.JComboBox<>();
         cbMunicipio = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jTutilizador = new javax.swing.JTextField();
         cbAcesso = new javax.swing.JComboBox<>();
+        jTdata_nascimento = new javax.swing.JTextField();
+        jTtelefone = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -96,10 +96,6 @@ public class FormUtilizador extends javax.swing.JFrame {
         jLabel6.setText("Município:");
 
         cbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Gênero", "Masculino", "Femenino" }));
-
-        jTdata_nascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
-
-        jTtelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("(+244) #########"))));
 
         cbProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolher Província" }));
         cbProvincia.addItemListener(new java.awt.event.ItemListener() {
@@ -140,19 +136,19 @@ public class FormUtilizador extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTnome)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTdata_nascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                    .addComponent(cbProvincia, 0, 1, Short.MAX_VALUE))
-                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTdata_nascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTtelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbAcesso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTtelefone))
                                 .addGap(0, 16, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -339,7 +335,7 @@ public class FormUtilizador extends javax.swing.JFrame {
         pessoa.setGenero(cbGenero.getSelectedItem().toString());
         pessoa.setTelefone(Integer.parseInt(jTtelefone.getText()));
         pessoa.setNome(jTnome.getText());
-        pessoa.setFoto(null);
+        pessoa.setFoto("cc");
         pessoa.setEstado("on");
         
         int idPessoa = pessoacontroller.store(pessoa);
@@ -412,10 +408,10 @@ public class FormUtilizador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField jTdata_nascimento;
+    private javax.swing.JTextField jTdata_nascimento;
     private javax.swing.JTextField jTnome;
     private javax.swing.JTextField jTsearch;
-    private javax.swing.JFormattedTextField jTtelefone;
+    private javax.swing.JTextField jTtelefone;
     private javax.swing.JTextField jTutilizador;
     private javax.swing.JTable jTutilizadores;
     // End of variables declaration//GEN-END:variables
