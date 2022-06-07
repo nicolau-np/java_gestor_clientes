@@ -351,6 +351,7 @@ public class FormUtilizador extends javax.swing.JFrame {
         int idUtilizador = utilizadorcontroller.store(utilizador);
 
         if (idUtilizador > 0) {
+            this.clearFields();
             JOptionPane.showMessageDialog(null, "Feito com sucesso");
         }
 
@@ -437,6 +438,17 @@ public class FormUtilizador extends javax.swing.JFrame {
         for (Municipio municipio : municipiocontroller.list(idProvincia)) {
             cbMunicipio.addItem(municipio.getMunicipio());
         }
+    }
+
+    private void clearFields() {
+        ((JTextField)jData_nascimento.getDateEditor().getUiComponent()).setText(null);
+        jTnome.setText(null);
+        cbMunicipio.setSelectedIndex(0);
+        cbProvincia.setSelectedIndex(0);
+        jTutilizador.setText(null);
+        cbGenero.setSelectedIndex(0);
+        jTtelefone.setText(null);
+        cbAcesso.setSelectedIndex(0);
     }
 
 }
