@@ -12,7 +12,7 @@ bandeira varchar(45) null,
 capital varchar(45) not null unique,
 indicativo varchar(6) not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 insert into pais(pais, bandeira, capital, indicativo, estado) 
@@ -27,7 +27,7 @@ idProvincia bigint(22) primary key auto_increment,
 id_pais bigint(22)  not null,
 provincia varchar(45) not null unique,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table provincias add constraint provincias_pais_id_pais 
@@ -61,7 +61,7 @@ idMunicipio bigint(22) primary key auto_increment,
 id_provincia bigint(22)  not null,
 municipio varchar(45) not null unique,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table municipios add constraint municipio_provincia_id_provincia 
@@ -116,7 +116,7 @@ data_nascimento date not null,
 telefone bigint(10) not null,
 foto longblob null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table pessoas add constraint pessoa_municipio_id_municipio 
@@ -134,7 +134,7 @@ utilizador varchar(45) not null unique,
 palavra_passe text not null,
 acesso varchar(20) not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table utilizadores add constraint utilizadores_pessoa_id_pessoa 
@@ -149,7 +149,7 @@ create table fornecedores(
 idFornecedor bigint(22) primary key auto_increment,
 fornecedor varchar(45) not null unique,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 -- end --
 
@@ -160,7 +160,7 @@ id_fornecedor bigint(22)  null,
 id_utilizador bigint(22)  not null,
 tipo_nota varchar(45) not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table nota_pedidos add constraint nota_pedido_fornecedores_id_fornecedor 
@@ -175,7 +175,7 @@ create table clientes(
 idCliente bigint(22) primary key auto_increment,
 id_pessoa bigint(22)  not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table clientes add constraint clientes_pessoas_id_pessoa 
@@ -189,7 +189,7 @@ idServico bigint(22) primary key auto_increment,
 servico varchar(45) not null unique,
 preco decimal(16,2) not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 -- end --
 
@@ -203,7 +203,7 @@ data_saida date null,
 preco decimal(16,2) not null,
 descriao text not null,
 estado varchar(4) not null,
-created_at timestamp
+created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 alter table pedidos add constraint pedidos_clientes_id_clientes 
