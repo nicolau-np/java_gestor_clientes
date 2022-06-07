@@ -329,16 +329,14 @@ public class FormUtilizador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
-
         int id_municipio = municipiocontroller.getIdMunicipio(cbMunicipio.getSelectedItem().toString());
 
         pessoa.setId_municipio(id_municipio);
-        pessoa.setData_nascimento(((JTextField)jData_nascimento.getDateEditor().getUiComponent()).getText());
+        pessoa.setData_nascimento(((JTextField) jData_nascimento.getDateEditor().getUiComponent()).getText());
         pessoa.setGenero(cbGenero.getSelectedItem().toString());
         pessoa.setTelefone(Integer.parseInt(jTtelefone.getText()));
         pessoa.setNome(jTnome.getText());
-        pessoa.setFoto("cc");
+        pessoa.setFoto(null);
         pessoa.setEstado("on");
 
         utilizador.setUtilizador(jTutilizador.getText());
@@ -348,24 +346,13 @@ public class FormUtilizador extends javax.swing.JFrame {
 
         int idPessoa = pessoacontroller.store(pessoa);
 
-        /*utilizador.setId_pessoa(idPessoa);
+        utilizador.setId_pessoa(idPessoa);
 
         int idUtilizador = utilizadorcontroller.store(utilizador);
 
-        System.out.println(
-                pessoa.getNome() + "\n"
-                + pessoa.getData_nascimento() + "\n"
-                + pessoa.getGenero() + "\n"
-                + pessoa.getTelefone() + "\n"
-                + pessoa.getEstado() + "\n"
-                + pessoa.getId_municipio() + "\n"
-                + utilizador.getAcesso() + "\n"
-                + utilizador.getPalavra_passe() + "\n"
-                + utilizador.getUtilizador() + "\n"
-                + utilizador.getEstado()
-        );*/
-        
-        System.out.print(idPessoa);
+        if (idUtilizador > 0) {
+            JOptionPane.showMessageDialog(null, "Feito com sucesso");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
