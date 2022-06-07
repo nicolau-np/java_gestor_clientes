@@ -24,13 +24,13 @@ import model.Utilizador;
  */
 public class FormUtilizador extends javax.swing.JFrame {
 
-     ProvinciaController provinciacontroller = new ProvinciaController();
-     MunicipioController municipiocontroller = new MunicipioController();
-     Pessoa pessoa = new Pessoa();
-     PessoaController pessoacontroller = new PessoaController();
-     Utilizador utilizador = new Utilizador();
-     UtilizadorController utilizadorcontroller = new UtilizadorController();
-     
+    ProvinciaController provinciacontroller = new ProvinciaController();
+    MunicipioController municipiocontroller = new MunicipioController();
+    Pessoa pessoa = new Pessoa();
+    PessoaController pessoacontroller = new PessoaController();
+    Utilizador utilizador = new Utilizador();
+    UtilizadorController utilizadorcontroller = new UtilizadorController();
+
     /**
      * Creates new form FormUtilizador
      */
@@ -319,17 +319,20 @@ public class FormUtilizador extends javax.swing.JFrame {
     private void cbProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbProvinciaItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             Object provincia = evt.getItem();
-            if("Escolher Província".equals(provincia)){
-                
-            }else{
+            if ("Escolher Província".equals(provincia)) {
+
+            } else {
                 this.getMunicipios(provincia.toString());
             }
         }
     }//GEN-LAST:event_cbProvinciaItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int id_municipio = municipiocontroller.getIdMunicipio(cbMunicipio.getSelectedItem().toString());
+
         
+
+        int id_municipio = municipiocontroller.getIdMunicipio(cbMunicipio.getSelectedItem().toString());
+
         pessoa.setId_municipio(id_municipio);
         pessoa.setData_nascimento(jTdata_nascimento.getText());
         pessoa.setGenero(cbGenero.getSelectedItem().toString());
@@ -337,20 +340,31 @@ public class FormUtilizador extends javax.swing.JFrame {
         pessoa.setNome(jTnome.getText());
         pessoa.setFoto("cc");
         pessoa.setEstado("on");
-        
-        int idPessoa = pessoacontroller.store(pessoa);
-        
+
         utilizador.setUtilizador(jTutilizador.getText());
         utilizador.setAcesso(cbAcesso.getSelectedItem().toString());
+        utilizador.setPalavra_passe("cliente2022");
         utilizador.setEstado("on");
+
+        int idPessoa = pessoacontroller.store(pessoa);
+
         utilizador.setId_pessoa(idPessoa);
-        
+
         int idUtilizador = utilizadorcontroller.store(utilizador);
-        
-        if(idUtilizador > 1){
-            JOptionPane.showMessageDialog(null, "Feito com sucesso");
-        }
-        
+
+        System.out.println(
+                pessoa.getNome() + "\n"
+                + pessoa.getData_nascimento() + "\n"
+                + pessoa.getGenero() + "\n"
+                + pessoa.getTelefone() + "\n"
+                + pessoa.getEstado() + "\n"
+                + pessoa.getId_municipio() + "\n"
+                + utilizador.getAcesso() + "\n"
+                + utilizador.getPalavra_passe() + "\n"
+                + utilizador.getUtilizador() + "\n"
+                + utilizador.getEstado()
+        );
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -419,21 +433,21 @@ public class FormUtilizador extends javax.swing.JFrame {
     private void getProvincias() {
         cbProvincia.removeAllItems();
         cbProvincia.addItem("Escolher Província");
-        
+
         for (Provincia provincia : provinciacontroller.list()) {
             cbProvincia.addItem(provincia.getProvincia());
         }
     }
-    
+
     private void getMunicipios(String provincia) {
         cbMunicipio.removeAllItems();
         cbMunicipio.addItem("Escolher Município");
-    
+
         int idProvincia = provinciacontroller.getIdProvincia(provincia);
-        
+
         for (Municipio municipio : municipiocontroller.list(idProvincia)) {
             cbMunicipio.addItem(municipio.getMunicipio());
         }
     }
-    
+
 }
