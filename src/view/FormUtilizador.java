@@ -346,11 +346,11 @@ public class FormUtilizador extends javax.swing.JFrame {
         utilizador.setPalavra_passe("cliente2022");
         utilizador.setEstado("on");
 
-        /*int idPessoa = pessoacontroller.store(pessoa);
+        int idPessoa = pessoacontroller.store(pessoa);
 
-        utilizador.setId_pessoa(idPessoa);
+        /*utilizador.setId_pessoa(idPessoa);
 
-        int idUtilizador = utilizadorcontroller.store(utilizador);*/
+        int idUtilizador = utilizadorcontroller.store(utilizador);
 
         System.out.println(
                 pessoa.getNome() + "\n"
@@ -363,7 +363,9 @@ public class FormUtilizador extends javax.swing.JFrame {
                 + utilizador.getPalavra_passe() + "\n"
                 + utilizador.getUtilizador() + "\n"
                 + utilizador.getEstado()
-        );
+        );*/
+        
+        System.out.print(idPessoa);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
