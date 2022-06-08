@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author nicolau
  */
-public class Cliente{
+public class Cliente extends Pessoa{
     private int idCliente;
     private int id_pessoa;
     private String estado;

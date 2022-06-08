@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author nicolau
  */
-public class Pessoa {
+public class Pessoa extends Municipio{
     private int idPessoa;
     private int id_municipio;
     private String nome;

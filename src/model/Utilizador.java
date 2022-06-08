@@ -9,7 +9,7 @@ package model;
  *
  * @author nicolau
  */
-public class Utilizador {
+public class Utilizador extends Pessoa{
     private int idUtilizador;
     private int id_pessoa;
     private String utilizador;

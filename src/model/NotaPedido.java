@@ -9,7 +9,7 @@ package model;
  *
  * @author nicolau
  */
-public class NotaPedido {
+public class NotaPedido extends Fornecedor{
     private int idNotaPedido;
     private int id_fornecedor;
     private int id_utilizador;

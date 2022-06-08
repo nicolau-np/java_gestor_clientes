@@ -18,8 +18,8 @@ public class PessoaController extends Controller{
     
     public Conexao conn;
     
-    public int store(Pessoa pessoa){
-        int idPessoa = 0;
+    public String store(Pessoa pessoa){
+        
         this.sql = "insert into pessoas(id_municipio, nome, genero, data_nascimento, telefone, foto, estado) "
                 + "values(?, ?, ?, ?, ?, ?, ?)";
         try {
@@ -35,7 +35,8 @@ public class PessoaController extends Controller{
             this.cmd.executeUpdate();
             this.rs = this.cmd.getGeneratedKeys();
             if(this.rs.next()){
-                idPessoa = this.rs.getInt(1);
+                pessoa.setIdPessoa(this.rs.getInt(1));
+                this.response = "yes";
             }
 
         } catch (SQLException ex) {
@@ -43,6 +44,6 @@ public class PessoaController extends Controller{
         } finally {
             conn.desconectar();
         }
-        return idPessoa;
+        return this.response;
     }
 }

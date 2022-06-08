@@ -212,3 +212,19 @@ foreign key(id_cliente) references clientes(idCliente) on update cascade;
 alter table pedidos add constraint pedidos_servicos_id_servico 
 foreign key(id_servico) references servicos(idServico) on update cascade;
 -- end --
+
+
+-- view Utilizador --
+create view ulilizador_view as select pessoas.idPessoa, utilizadores.idUtilizador, 
+pessoas.nome, pessoas.genero, pessoas.data_nascimento,pessoas.telefone, municipios.municipio, 
+provincias.provincia, pais.pais, utilizadores.utilizador, utilizadores.palavra_passe, 
+utilizadores.acesso, utilizadores.estado, utilizadores.created_at 
+from pessoas inner join municipios on 
+pessoas.id_municipio = municipios.idMunicipio 
+inner join provincias on 
+municipios.id_provincia = provincias.idProvincia 
+inner join pais on 
+provincias.id_pais = pais.idPais 
+inner join utilizadores on 
+pessoas.idPessoa = utilizadores.id_pessoa;
+-- end --

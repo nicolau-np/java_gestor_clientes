@@ -9,7 +9,7 @@ package model;
  *
  * @author nicolau
  */
-public class Municipio {
+public class Municipio extends Provincia{
     private int idMunicipio;
     private int id_provincia;
     private String municipio;

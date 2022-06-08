@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author nicolau
  */
-public class Pedido {
+public class Pedido extends Servico{
     private int idPedido;
     private int id_cliente;
     private int id_servico;

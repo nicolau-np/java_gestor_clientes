@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.Municipio;
 import model.Pessoa;
 import model.Provincia;
@@ -239,15 +240,23 @@ public class FormUtilizador extends javax.swing.JFrame {
 
         jTutilizadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Utilizador", "Acesso", "Estado"
+                "ID", "Nome", "Genero", "Data Nascimento", "Telefone", "Provincia", "Municipio", "Utilizador", "Acesso"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTutilizadores);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -255,13 +264,12 @@ public class FormUtilizador extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jTsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,6 +317,7 @@ public class FormUtilizador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         this.getProvincias();
+        this.getUtilizadores();
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -329,6 +338,9 @@ public class FormUtilizador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String response1 = null;
+        String response2 = null;
+
         int id_municipio = municipiocontroller.getIdMunicipio(cbMunicipio.getSelectedItem().toString());
 
         pessoa.setId_municipio(id_municipio);
@@ -344,16 +356,19 @@ public class FormUtilizador extends javax.swing.JFrame {
         utilizador.setPalavra_passe("cliente2022");
         utilizador.setEstado("on");
 
-        int idPessoa = pessoacontroller.store(pessoa);
+        response1 = pessoacontroller.store(pessoa);
 
-        utilizador.setId_pessoa(idPessoa);
+        if ("yes".equals(response1)) {
+            utilizador.setId_pessoa(pessoa.getIdPessoa());
+            response2 = utilizadorcontroller.store(utilizador);
 
-        int idUtilizador = utilizadorcontroller.store(utilizador);
-
-        if (idUtilizador > 0) {
-            this.clearFields();
-            JOptionPane.showMessageDialog(null, "Feito com sucesso");
+            if ("yes".equals(response2)) {
+                this.clearFields();
+                JOptionPane.showMessageDialog(null, "Feito com sucesso");
+            }
         }
+
+        System.out.println(response1 + "\n" + response2);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -441,14 +456,33 @@ public class FormUtilizador extends javax.swing.JFrame {
     }
 
     private void clearFields() {
-        ((JTextField)jData_nascimento.getDateEditor().getUiComponent()).setText(null);
+        ((JTextField) jData_nascimento.getDateEditor().getUiComponent()).setText(null);
         jTnome.setText(null);
-        cbMunicipio.setSelectedIndex(0);
+        cbMunicipio.removeAllItems();
+        cbMunicipio.addItem("Escolher Município");
         cbProvincia.setSelectedIndex(0);
         jTutilizador.setText(null);
         cbGenero.setSelectedIndex(0);
         jTtelefone.setText(null);
         cbAcesso.setSelectedIndex(0);
+    }
+
+    private void getUtilizadores() {
+        DefaultTableModel modelo = (DefaultTableModel) jTutilizadores.getModel();
+        modelo.setNumRows(0);
+        for (Utilizador utilizador : utilizadorcontroller.list()) {
+            modelo.addRow(new Object[]{
+                utilizador.getIdUtilizador(),
+                utilizador.getNome(),
+                utilizador.getGenero(),
+                utilizador.getData_nascimento(),
+                utilizador.getTelefone(),
+                utilizador.getProvincia(),
+                utilizador.getMunicipio(),
+                utilizador.getUtilizador(),
+                utilizador.getAcesso()
+            });
+        }
     }
 
 }

@@ -9,7 +9,7 @@ package model;
  *
  * @author nicolau
  */
-public class Provincia {
+public class Provincia extends Pais{
     private int idProvincia;
     private int id_pais;
     private String provincia;
