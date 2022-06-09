@@ -10,11 +10,12 @@ import controller.PessoaController;
 import controller.ProvinciaController;
 import controller.UtilizadorController;
 import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Municipio;
 import model.Pessoa;
 import model.Provincia;
@@ -32,6 +33,7 @@ public class FormUtilizador extends javax.swing.JFrame {
     PessoaController pessoacontroller = new PessoaController();
     Utilizador utilizador = new Utilizador();
     UtilizadorController utilizadorcontroller = new UtilizadorController();
+    TableRowSorter<DefaultTableModel> sorter;
 
     /**
      * Creates new form FormUtilizador
@@ -72,7 +74,7 @@ public class FormUtilizador extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTutilizadores = new javax.swing.JTable();
+        jTutilizadores1 = new javax.swing.JTable();
         jTsearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -238,7 +240,7 @@ public class FormUtilizador extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Utilizadores"));
 
-        jTutilizadores.setModel(new javax.swing.table.DefaultTableModel(
+        jTutilizadores1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -246,7 +248,7 @@ public class FormUtilizador extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Genero", "Data Nascimento", "Telefone", "Provincia", "Municipio", "Utilizador", "Acesso"
+                "ID", "Nome", "Genero", "Data Nascimento", "Telefone", "Província", "Município", "Utilizador", "Acesso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -257,7 +259,13 @@ public class FormUtilizador extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTutilizadores);
+        jScrollPane1.setViewportView(jTutilizadores1);
+
+        jTsearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTsearchKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -367,10 +375,14 @@ public class FormUtilizador extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Feito com sucesso");
             }
         }
-
+        this.getUtilizadores();
         System.out.println(response1 + "\n" + response2);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTsearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTsearchKeyTyped
+        this.search();
+    }//GEN-LAST:event_jTsearchKeyTyped
 
     /**
      * @param args the command line arguments
@@ -432,7 +444,7 @@ public class FormUtilizador extends javax.swing.JFrame {
     private javax.swing.JTextField jTsearch;
     private javax.swing.JTextField jTtelefone;
     private javax.swing.JTextField jTutilizador;
-    private javax.swing.JTable jTutilizadores;
+    private javax.swing.JTable jTutilizadores1;
     // End of variables declaration//GEN-END:variables
 
     private void getProvincias() {
@@ -467,21 +479,35 @@ public class FormUtilizador extends javax.swing.JFrame {
         cbAcesso.setSelectedIndex(0);
     }
 
-    private void getUtilizadores() {
-        DefaultTableModel modelo = (DefaultTableModel) jTutilizadores.getModel();
+    public void getUtilizadores() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTutilizadores1.getModel();
         modelo.setNumRows(0);
-        for (Utilizador utilizador : utilizadorcontroller.list()) {
+        for (Utilizador ut : utilizadorcontroller.list()) {
             modelo.addRow(new Object[]{
-                utilizador.getIdUtilizador(),
-                utilizador.getNome(),
-                utilizador.getGenero(),
-                utilizador.getData_nascimento(),
-                utilizador.getTelefone(),
-                utilizador.getProvincia(),
-                utilizador.getMunicipio(),
-                utilizador.getUtilizador(),
-                utilizador.getAcesso()
+                ut.getIdUtilizador(),
+                ut.getNome(),
+                ut.getGenero(),
+                ut.getData_nascimento(),
+                ut.getTelefone(),
+                ut.getProvincia(),
+                ut.getMunicipio(),
+                ut.getUtilizador(),
+                ut.getAcesso()
             });
+
+        }
+        jTutilizadores1.setAutoCreateRowSorter(true);
+        sorter = new TableRowSorter<>(modelo);
+        jTutilizadores1.setRowSorter(sorter);
+
+    }
+
+    private void search() {
+        try {
+            sorter.setRowFilter(RowFilter.regexFilter(jTsearch.getText()));
+        } catch (Exception ex) {
+
         }
     }
 

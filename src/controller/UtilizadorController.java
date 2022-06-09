@@ -47,20 +47,20 @@ public class UtilizadorController extends Controller {
         return this.response;
     }
 
-    public String login(Utilizador user) {
+    public String login(Utilizador utilizador) {
 
         this.sql = "select *from utilizadores where utilizador=? and palavra_passe=?";
         try {
             this.cmd = conn.conectar().prepareStatement(this.sql);
-            this.cmd.setString(1, user.getUtilizador());
-            this.cmd.setString(2, user.getPalavra_passe());
+            this.cmd.setString(1, utilizador.getUtilizador());
+            this.cmd.setString(2, utilizador.getPalavra_passe());
             this.rs = this.cmd.executeQuery();
 
             if (this.rs.next()) {
-                user.setUtilizador(this.rs.getString("utilizador"));
-                user.setPalavra_passe(this.rs.getString("palavra_passe"));
-                user.setEstado(this.rs.getString("estado"));
-                user.setAcesso(this.rs.getString("acesso"));
+                utilizador.setUtilizador(this.rs.getString("utilizador"));
+                utilizador.setPalavra_passe(this.rs.getString("palavra_passe"));
+                utilizador.setEstado(this.rs.getString("estado"));
+                utilizador.setAcesso(this.rs.getString("acesso"));
                 this.response = "yes";
             } else {
                 this.response = "no";
@@ -74,27 +74,29 @@ public class UtilizadorController extends Controller {
     }
 
     public List<Utilizador> list() {
+        
         List<Utilizador> utilizadores = new ArrayList<>();
-        this.sql = "select *from ulilizador_view";
+        
+        this.sql = "SELECT *FROM ulilizador_view where acesso!=?";
         try {
             this.cmd = conn.conectar().prepareStatement(this.sql);
+            this.cmd.setString(1, "admin");
             this.rs = this.cmd.executeQuery();
 
             while (this.rs.next()) {
                 Utilizador utilizador = new Utilizador();
-                utilizador.setIdUtilizador(this.rs.getInt("idUtilzador"));
+                utilizador.setIdUtilizador(this.rs.getInt("idUtilizador"));
                 utilizador.setNome(this.rs.getString("nome"));
-                utilizador.setTelefone(this.rs.getInt("telefone"));
                 utilizador.setGenero(this.rs.getString("genero"));
                 utilizador.setData_nascimento(this.rs.getString("data_nascimento"));
                 utilizador.setProvincia(this.rs.getString("provincia"));
                 utilizador.setMunicipio(this.rs.getString("municipio"));
+                utilizador.setTelefone(this.rs.getInt("telefone"));
                 utilizador.setUtilizador(this.rs.getString("utilizador"));
                 utilizador.setAcesso(this.rs.getString("acesso"));
                 
                 utilizadores.add(utilizador);
                 
-                System.out.println(utilizadores);
             }
         } catch (SQLException ex) {
             this.response = ex.getMessage();

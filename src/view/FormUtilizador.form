@@ -384,7 +384,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTutilizadores">
+            <Component class="javax.swing.JTable" name="jTutilizadores1">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="4">
@@ -393,8 +393,8 @@
                     <Column editable="true" title="Genero" type="java.lang.Object"/>
                     <Column editable="true" title="Data Nascimento" type="java.lang.Object"/>
                     <Column editable="true" title="Telefone" type="java.lang.Object"/>
-                    <Column editable="true" title="Provincia" type="java.lang.Object"/>
-                    <Column editable="true" title="Municipio" type="java.lang.Object"/>
+                    <Column editable="true" title="Prov&#xed;ncia" type="java.lang.Object"/>
+                    <Column editable="true" title="Munic&#xed;pio" type="java.lang.Object"/>
                     <Column editable="true" title="Utilizador" type="java.lang.Object"/>
                     <Column editable="true" title="Acesso" type="java.lang.Object"/>
                   </Table>
@@ -456,6 +456,9 @@
           </SubComponents>
         </Container>
         <Component class="javax.swing.JTextField" name="jTsearch">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTsearchKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
